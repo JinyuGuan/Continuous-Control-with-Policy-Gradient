@@ -20,7 +20,7 @@ plt.ion()
 
 
 #Hyperparameters
-learning_rate = 0.02
+learning_rate = 0.0025
 gamma = 0.995
 episodes = 1000
 
@@ -48,7 +48,7 @@ class Policy(nn.Module):
 
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc3(x))
-        mu = F.sigmoid(self.mu_head(x))
+        mu = F.tanh(self.mu_head(x))
         sigma = F.softplus(self.sigma_head(x))
         return mu, sigma
 
